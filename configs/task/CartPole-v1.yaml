@@ -1,0 +1,15 @@
+name: rl
+
+exp_name: CartPole-v1/top200_2
+
+env:
+  name: CartPole-v1
+  n_eval_episodes: 10
+  num_envs: 10
+  seed: 42
+
+# parameter data root
+param:
+  data_root: param_data/CartPole-v1/data_top200.pt
+  k: 200
+  num_workers: 4

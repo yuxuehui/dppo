@@ -1,0 +1,23 @@
+name: multitask_rl
+exp_name: Atari-Assault
+
+load_episode_vae: True
+episode_len: 10
+
+tasks:
+  Atari-Assault:
+    train:
+      alg:
+        _target_: stable_baselines3.PPO
+        policy: CnnPolicy
+    env:
+      name: AssaultNoFrameskip-v4
+      n_eval_episodes: 10
+      num_envs: 10
+      seed: 42
+
+    param:
+      #data_root: ${project_root}/param_data/Atari_zoo/Atari-Assault/200/episodes_data2.pkl
+      data_root: ${project_root}/param_data/Atari_zoo/Atari-Assault/200/data.pt
+      k: 200
+      num_workers: 4

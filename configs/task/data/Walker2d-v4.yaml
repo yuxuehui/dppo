@@ -1,0 +1,22 @@
+name: rl
+
+exp_name: Walker2d-v4
+
+train:
+  eval_freq: 5000
+  save_model_num: 200
+  save_path: param_data/${task.exp_name}
+  algo: ppo
+  alg:
+    _target_: stable_baselines3.PPO
+    policy: MlpPolicy
+
+  finetune_lr: 3e-6
+  train_layers: ['mlp_extractor.policy_net.0.weight', 'mlp_extractor.policy_net.0.bias', 'mlp_extractor.policy_net.2.weight', 'mlp_extractor.policy_net.2.bias', 'action_net.weight', 'action_net.bias']
+  param_dim: 5702
+
+env:
+  name: Walker2d-v4
+  n_eval_episodes: 10
+  num_envs: 10
+  seed: 42

@@ -1,0 +1,52 @@
+name: multitask_rl
+exp_name: mix
+
+tasks:
+  CartPole-v1:
+    train:
+      alg:
+        _target_: stable_baselines3.PPO
+        policy: MlpPolicy
+    env:
+      name: CartPole-v1
+      n_eval_episodes: 10
+      num_envs: 10
+      seed: 42
+
+    param:
+      data_root: param_data/CartPole-v1/data.pt
+      k: 200
+      num_workers: 4
+
+  Walker2d-v4:
+    train:
+      alg:
+        _target_: stable_baselines3.PPO
+        policy: MlpPolicy
+    env:
+      name: Walker2d-v4
+      n_eval_episodes: 10
+      num_envs: 10
+      seed: 42
+
+    param:
+      data_root: param_data/Walker2d-v4/data.pt
+      normalization_path: param_data/Walker2d-v4/vecnormalize.pkl
+      k: 200
+      num_workers: 4
+
+  Atari-Assault:
+    train:
+      alg:
+        _target_: stable_baselines3.PPO
+        policy: CnnPolicy
+    env:
+      name: AssaultNoFrameskip-v4
+      n_eval_episodes: 10
+      num_envs: 10
+      seed: 42
+
+    param:
+      data_root: param_data/Atari-Assault/data.pt
+      k: 200
+      num_workers: 4

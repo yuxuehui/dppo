@@ -1,0 +1,82 @@
+name: multitask_episode_ddpm
+
+load_episode_vae: False
+no_train_last: False
+validate_only_last_two: False
+load_clip: False
+load_vit: True
+episode_len: 10
+sampling_method: "ddim"  # Options: "ddim" or "p_sample"
+
+model:
+  _target_: core.module.modules.dit.DiT
+  patch_size: 16
+  depth: 2
+  condition_num: 0
+  hidden_size: 64
+  class_dropout_prob: 0
+
+beta_schedule:
+  start: 1e-4
+  end: 2e-2
+  schedule: linear
+  n_timestep: 100
+
+model_mean_type: eps
+model_var_type: fixedlarge
+loss_type: mse
+
+train:
+  split_epoch: 0
+  ae_eval_batch_size: 10
+  ddpm_eval_batch_size: 10
+  ae_use_condition: false
+  optimizer:
+    _target_: torch.optim.AdamW
+    lr: 3e-4
+    weight_decay: 2e-6
+
+  ae_optimizer:
+    _target_: torch.optim.AdamW
+    lr: 3e-4
+    weight_decay: 2e-6
+
+  lr_scheduler:
+
+  trainer:
+    _target_: pytorch_lightning.Trainer
+    _convert_: all
+    max_epochs: 300000
+    check_val_every_n_epoch: 5000
+    #val_check_interval : 5000
+    log_every_n_steps: 10
+    limit_val_batches: 1
+    limit_test_batches: 1
+    devices: ${device.id}
+    #strategy: ddp_find_unused_parameters_true
+      #- ${device.id}
+
+    enable_model_summary: false
+
+    callbacks:
+    - _target_: pytorch_lightning.callbacks.ModelCheckpoint
+      monitor: 'mean_g_acc'
+      mode: 'max'
+      save_top_k: 10
+      save_last: true
+      verbose: true
+      filename: 'ddpm-{epoch}-{mean_g_acc:.4f}'
+
+    - _target_: pytorch_lightning.callbacks.ModelCheckpoint
+      filename: "ae-{epoch}-{mean_ae_acc:.4f}"
+      monitor: 'mean_ae_acc'
+      mode: 'max'
+      save_top_k: 1
+      save_last: false
+      verbose: true
+
+    logger:
+      _target_: pytorch_lightning.loggers.TensorBoardLogger
+      save_dir: ${output_dir}/${system.name}/
+      name: '.'
+      version: '.'

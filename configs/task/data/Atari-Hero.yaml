@@ -1,0 +1,29 @@
+name: rl
+
+exp_name: Atari-Hero
+
+train:
+  eval_freq: 5000
+  save_model_num: 200
+  save_path: ${project_root}/param_data/Atari_zoo/${task.exp_name}/200
+  algo: ppo
+  alg:
+    _target_: stable_baselines3.PPO
+    policy: CnnPolicy
+
+  finetune_lr: 3e-6
+  train_layers: ['action_net.weight', 'action_net.bias']
+  # train_layers: ['features_extractor.cnn.0.weight', 'features_extractor.cnn.0.bias', 'features_extractor.cnn.2.weight', 'features_extractor.cnn.2.bias', 'features_extractor.cnn.4.weight', 'features_extractor.cnn.4.bias', 'features_extractor.linear.0.weight', 'features_extractor.linear.0.bias', 'action_net.weight', 'action_net.bias']
+  param_dim: 9234
+
+env:
+  name: HeroNoFrameskip-v4
+  n_eval_episodes: 10
+  num_envs: 10
+  seed: 42
+
+param:
+    data_root: ${project_root}/param_data/Atari_zoo/Atari-Hero/200/data.pt
+    k: 200
+    num_workers: 4
+

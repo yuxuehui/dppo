@@ -1,0 +1,166 @@
+name: multitask_rl
+exp_name: mix
+
+load_episode_vae: False
+episode_len: 10
+
+tasks:
+  Atari-UpNDown:
+    train:
+      alg:
+        _target_: stable_baselines3.PPO
+        policy: CnnPolicy
+    env:
+      name: UpNDownNoFrameskip-v4
+      n_eval_episodes: 10
+      num_envs: 10
+      seed: 42
+
+    param:
+      data_root: param_data/Atari_zoo/Atari-UpNDown/200/data.pt
+      k: 200
+      num_workers: 4
+
+  Atari-AirRaid:
+    train:
+      alg:
+        _target_: stable_baselines3.PPO
+        policy: CnnPolicy
+    env:
+      name: AirRaidNoFrameskip-v4
+      n_eval_episodes: 10
+      num_envs: 10
+      seed: 42
+
+    param:
+      data_root: param_data/Atari_zoo/Atari-AirRaid/200/data.pt
+      k: 200
+      num_workers: 4
+
+  Atari-Defender:
+    train:
+      alg:
+        _target_: stable_baselines3.PPO
+        policy: CnnPolicy
+    env:
+      name: DefenderNoFrameskip-v4
+      n_eval_episodes: 10
+      num_envs: 10
+      seed: 42
+
+    param:
+      data_root: param_data/Atari_zoo/Atari-Defender/200/data.pt
+      k: 200
+      num_workers: 4
+
+  Atari-ElevatorAction:
+    train:
+      alg:
+        _target_: stable_baselines3.PPO
+        policy: CnnPolicy
+    env:
+      name: ElevatorActionNoFrameskip-v4
+      n_eval_episodes: 10
+      num_envs: 10
+      seed: 42
+
+    param:
+      data_root: param_data/Atari_zoo/Atari-ElevatorAction/200/data.pt
+      k: 200
+      num_workers: 4
+
+  Atari-Gopher:
+    train:
+      alg:
+        _target_: stable_baselines3.PPO
+        policy: CnnPolicy
+    env:
+      name: GopherNoFrameskip-v4
+      n_eval_episodes: 10
+      num_envs: 10
+      seed: 42
+
+    param:
+      data_root: param_data/Atari_zoo/Atari-Gopher/200/data.pt
+      k: 200
+      num_workers: 4
+
+  Atari-Hero:
+    train:
+      alg:
+        _target_: stable_baselines3.PPO
+        policy: CnnPolicy
+    env:
+      name: HeroNoFrameskip-v4
+      n_eval_episodes: 10
+      num_envs: 10
+      seed: 42
+
+    param:
+      data_root: param_data/Atari_zoo/Atari-Hero/200/data.pt
+      k: 200
+      num_workers: 4
+
+  Atari-Phoenix:
+    train:
+      alg:
+        _target_: stable_baselines3.PPO
+        policy: CnnPolicy
+    env:
+      name: PhoenixNoFrameskip-v4
+      n_eval_episodes: 10
+      num_envs: 10
+      seed: 42
+
+    param:
+      data_root: param_data/Atari_zoo/Atari-Phoenix/200/data.pt
+      k: 200
+      num_workers: 4
+
+  Atari-StarGunner:
+    train:
+      alg:
+        _target_: stable_baselines3.PPO
+        policy: CnnPolicy
+    env:
+      name: StarGunnerNoFrameskip-v4
+      n_eval_episodes: 10
+      num_envs: 10
+      seed: 42
+
+    param:
+      data_root: param_data/Atari_zoo/Atari-StarGunner/200/data.pt
+      k: 200
+      num_workers: 4
+
+  Atari-DoubleDunk:
+    train:
+      alg:
+        _target_: stable_baselines3.PPO
+        policy: CnnPolicy
+    env:
+      name: DoubleDunkNoFrameskip-v4
+      n_eval_episodes: 10
+      num_envs: 10
+      seed: 42
+
+    param:
+      data_root: param_data/Atari_zoo/Atari-DoubleDunk/200/data.pt
+      k: 200
+      num_workers: 4
+
+  Atari-WizardOfWor:
+    train:
+      alg:
+        _target_: stable_baselines3.PPO
+        policy: CnnPolicy
+    env:
+      name: WizardOfWorNoFrameskip-v4
+      n_eval_episodes: 10
+      num_envs: 10
+      seed: 42
+
+    param:
+      data_root: param_data/Atari_zoo/Atari-WizardOfWor/200/data.pt
+      k: 200
+      num_workers: 4

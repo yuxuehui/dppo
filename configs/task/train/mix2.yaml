@@ -1,0 +1,38 @@
+name: multitask_rl
+exp_name: mix
+
+load_episode_vae: False
+episode_len: 10
+
+tasks:
+  Atari-BattleZone:
+    train:
+      alg:
+        _target_: stable_baselines3.PPO
+        policy: CnnPolicy
+    env:
+      name: BattleZoneNoFrameskip-v4
+      n_eval_episodes: 10
+      num_envs: 10
+      seed: 42
+
+    param:
+      data_root: param_data/Atari_zoo/Atari-BattleZone/200/data.pt
+      k: 200
+      num_workers: 4
+
+  Atari-BeamRider:
+    train:
+      alg:
+        _target_: stable_baselines3.PPO
+        policy: CnnPolicy
+    env:
+      name: BeamRiderNoFrameskip-v4
+      n_eval_episodes: 10
+      num_envs: 10
+      seed: 42
+
+    param:
+      data_root: param_data/Atari_zoo/Atari-BeamRider/200/data.pt
+      k: 200
+      num_workers: 4

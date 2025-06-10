@@ -1,0 +1,102 @@
+name: multitask_rl
+exp_name: mix
+
+load_episode_vae: True
+episode_len: 10
+
+tasks:
+  Atari-AirRaid:
+    train:
+      alg:
+        _target_: stable_baselines3.PPO
+        policy: CnnPolicy
+    env:
+      name: AirRaidNoFrameskip-v4
+      n_eval_episodes: 10
+      num_envs: 10
+      seed: 42
+
+    param:
+      data_root: ${project_root}/param_data/Atari_zoo/Atari-AirRaid/200/data.pt
+      k: 200
+      num_workers: 4
+
+  Atari-BeamRider:
+    train:
+      alg:
+        _target_: stable_baselines3.PPO
+        policy: CnnPolicy
+    env:
+      name: BeamRiderNoFrameskip-v4
+      n_eval_episodes: 10
+      num_envs: 10
+      seed: 42
+
+    param:
+      data_root: ${project_root}/param_data/Atari_zoo/Atari-BeamRider/200/data.pt
+      k: 200
+      num_workers: 4
+
+  Atari-Breakout:
+    train:
+      alg:
+        _target_: stable_baselines3.PPO
+        policy: CnnPolicy
+    env:
+      name: BreakoutNoFrameskip-v4
+      n_eval_episodes: 10
+      num_envs: 10
+      seed: 42
+
+    param:
+      data_root: ${project_root}/param_data/Atari_zoo/Atari-Breakout/200/data.pt
+      k: 200
+      num_workers: 4
+
+  Atari-Enduro:
+    train:
+      alg:
+        _target_: stable_baselines3.PPO
+        policy: CnnPolicy
+    env:
+      name: EnduroNoFrameskip-v4
+      n_eval_episodes: 10
+      num_envs: 10
+      seed: 42
+
+    param:
+      data_root: ${project_root}/param_data/Atari_zoo/Atari-Enduro/200/data.pt
+      k: 200
+      num_workers: 4
+
+  Atari-Jamesbond:
+    train:
+      alg:
+        _target_: stable_baselines3.PPO
+        policy: CnnPolicy
+    env:
+      name: JamesbondNoFrameskip-v4
+      n_eval_episodes: 10
+      num_envs: 10
+      seed: 42
+
+    param:
+      data_root: ${project_root}/param_data/Atari_zoo/Atari-Jamesbond/200/data.pt
+      k: 200
+      num_workers: 4
+
+  Atari-Kangaroo:
+    train:
+      alg:
+        _target_: stable_baselines3.PPO
+        policy: CnnPolicy
+    env:
+      name: KangarooNoFrameskip-v4
+      n_eval_episodes: 10
+      num_envs: 10
+      seed: 42
+
+    param:
+      data_root: ${project_root}/param_data/Atari_zoo/Atari-Kangaroo/200/data.pt
+      k: 200
+      num_workers: 4

@@ -1,0 +1,31 @@
+defaults:
+  - task: train/mix5
+  - system: multitask_episode_ddpm
+  - _self_
+
+# Project root path - change this for different environments
+project_root: ${oc.env:PROJECT_ROOT,${hydra:runtime.cwd}}
+
+device:
+  cuda_visible_devices: "0"
+  id: [0]
+
+load_system_checkpoint: null
+# load_system_checkpoint: "/mnt/kaiwu-group-x3/jiateliu/policy-diffusion/new_outputs/mix20/noae_ddpmepisodecondition_dropout0.1_ps32/20240809-053659-seed42/multitask_episode_ddpm/checkpoints/ddpm-epoch=44999-mean_g_acc=0.1695.ckpt"
+# load_system_checkpoint: "/mnt/kaiwu-group-x3/jiateliu/policy-diffusion/new_outputs/mix5/noae_ddpmepisodecondition_ps32/20240724-065355-seed42/multitask_episode_ddpm/checkpoints/ddpm-epoch=49999-mean_g_acc=0.7249.ckpt"
+# load_system_checkpoint: "/mnt/kaiwu-group-x3/jiateliu/ongoing/policy-diffusion/new_outputs/mix/20250401-123419-seed42/multitask_episode_ddpm/checkpoints/ddpm-epoch=79999-mean_g_acc=0.4731.ckpt"
+mode: train
+
+seed: 42
+process_title: PDN
+
+# Output directory configuration
+output_dir: new_outputs/${task.exp_name}/${now:%Y%m%d}-${now:%H%M%S}-seed${seed}
+
+hydra:
+  output_subdir: config
+  run:
+    dir: ${output_dir}
+  sweep:
+    dir: ${output_dir}
+    subdir: ${hydra.job.override_dirname}

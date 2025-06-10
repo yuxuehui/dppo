@@ -1,0 +1,134 @@
+name: multitask_rl
+exp_name: mix
+
+load_episode_vae: True
+episode_len: 10
+
+tasks:
+  Atari-Alien:
+    train:
+      alg:
+        _target_: stable_baselines3.PPO
+        policy: CnnPolicy
+    env:
+      name: AlienNoFrameskip-v4
+      n_eval_episodes: 10
+      num_envs: 10
+      seed: 42
+
+    param:
+      data_root: ${project_root}/param_data/Atari_zoo/Atari-Alien/200/data.pt
+      k: 200
+      num_workers: 4
+
+  Atari-BattleZone:
+    train:
+      alg:
+        _target_: stable_baselines3.PPO
+        policy: CnnPolicy
+    env:
+      name: BattleZoneNoFrameskip-v4
+      n_eval_episodes: 10
+      num_envs: 10
+      seed: 42
+
+    param:
+      data_root: ${project_root}/param_data/Atari_zoo/Atari-BattleZone/200/data.pt
+      k: 200
+      num_workers: 4
+
+  Atari-Boxing:
+    train:
+      alg:
+        _target_: stable_baselines3.PPO
+        policy: CnnPolicy
+    env:
+      name: BoxingNoFrameskip-v4
+      n_eval_episodes: 10
+      num_envs: 10
+      seed: 42
+
+    param:
+      data_root: ${project_root}/param_data/Atari_zoo/Atari-Boxing/200/data.pt
+      k: 200
+      num_workers: 4
+
+  Atari-Jamesbond:
+    train:
+      alg:
+        _target_: stable_baselines3.PPO
+        policy: CnnPolicy
+    env:
+      name: JamesbondNoFrameskip-v4
+      n_eval_episodes: 10
+      num_envs: 10
+      seed: 42
+
+    param:
+      data_root: ${project_root}/param_data/Atari_zoo/Atari-Jamesbond/200/data.pt
+      k: 200
+      num_workers: 4
+
+  Atari-Kangaroo:
+    train:
+      alg:
+        _target_: stable_baselines3.PPO
+        policy: CnnPolicy
+    env:
+      name: KangarooNoFrameskip-v4
+      n_eval_episodes: 10
+      num_envs: 10
+      seed: 42
+
+    param:
+      data_root: ${project_root}/param_data/Atari_zoo/Atari-Kangaroo/200/data.pt
+      k: 200
+      num_workers: 4
+
+  Atari-RoadRunner:
+    train:
+      alg:
+        _target_: stable_baselines3.PPO
+        policy: CnnPolicy
+    env:
+      name: RoadRunnerNoFrameskip-v4
+      n_eval_episodes: 10
+      num_envs: 10
+      seed: 42
+
+    param:
+      data_root: ${project_root}/param_data/Atari_zoo/Atari-RoadRunner/200/data.pt
+      k: 200
+      num_workers: 4
+
+  Atari-Robotank:
+    train:
+      alg:
+        _target_: stable_baselines3.PPO
+        policy: CnnPolicy
+    env:
+      name: RobotankNoFrameskip-v4
+      n_eval_episodes: 10
+      num_envs: 10
+      seed: 42
+
+    param:
+      data_root: ${project_root}/param_data/Atari_zoo/Atari-Robotank/200/data.pt
+      k: 200
+      num_workers: 4
+
+  Atari-Seaquest:
+    train:
+      alg:
+        _target_: stable_baselines3.PPO
+        policy: CnnPolicy
+    env:
+      name: SeaquestNoFrameskip-v4
+      n_eval_episodes: 10
+      num_envs: 10
+      seed: 42
+
+    param:
+      data_root: ${project_root}/param_data/Atari_zoo/Atari-Seaquest/200/data.pt
+      k: 200
+      num_workers: 4
